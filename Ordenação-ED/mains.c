@@ -8,8 +8,6 @@ float tempotrocas;
 float tempoComparacoes;
 float tempoMedio;
 float tempoTotal;
-int numeroTrocas;
-int numeroComparacoes;
 int comparacoesMelhorCaso;
 int trocasMelhorCaso;
 int comparacoesPiorCaso;
@@ -22,9 +20,8 @@ void imprimeResultado(struct Tabela tabela)
 {
 printf("\n______________________________________________________");
 printf("\nMetodo: %s",tabela.nome);
-printf("\nNumero de Comparacoes: %.3f",tabela.numeroTrocas);
+
 printf("\nTempo medio de Trocas: %.3f",tabela.tempotrocas);
-printf("\nNumero de Comparacoes: %.3f",tabela.numeroComparacoes);
 printf("\nTempo medio de Comparacoes: %.3f",tabela.tempoComparacoes);
 printf("\nTempo medio de ordenacao: %.3f",tabela.tempoMedio);
 printf("\nTempo medio Tempo Total: %.3f",tabela.tempoTotal);
@@ -39,6 +36,8 @@ printf("\nTempo pior caso : %.3f",tabela.tempoPiorCaso);
 
 printf("\n________________________________________________________\n");
 }
+
+
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
@@ -53,13 +52,11 @@ int main()
     tabela.trocasPiorCaso = 32;
     tabela.tempoPiorCaso = 0.764;
 
+
     tabela.tempoMedio = 0.123;
     tabela.tempoTotal = 0.646;
     tabela.tempotrocas = 0.344;
     tabela.tempoComparacoes =0302;
-    tabela.numeroComparacoes = 10;
-    tabela.numeroTrocas = 6;
-
 
     imprimeResultado(tabela);
     imprimeResultado(tabela);
