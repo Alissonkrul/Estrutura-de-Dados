@@ -25,7 +25,7 @@ int getArrayRand(int *vetor)
 {
     int i =0;
     for(i; i < MAX ; i++)
-        vetor[i] = random(999);
+        vetor[i] = random(0,999);
 }
 
 void printArray( int *vetor)
@@ -42,7 +42,7 @@ void copyArray( int *from, int *to)
         to[i] = from[i];
 }
 
-int random(int max) {
-    srand(time());
-    return (rand() % max) + 1;
+int random(int min, int max)
+{
+    return rand()%(max-min+1) + min;
 }
