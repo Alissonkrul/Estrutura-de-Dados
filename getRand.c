@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <time.h>
 
-#define MAX 18
+#define MAX 10
 
 int main()
 {
@@ -17,6 +17,11 @@ int main()
     copyArray(&vetor, &tmp);
     printArray(&tmp);
 
+
+    printf("\n\n\n");
+
+    invertArray(&tmp);
+    printArray(&tmp);
 
 
 }
@@ -40,6 +45,21 @@ void copyArray( int *from, int *to)
     int i =0;
     for(i; i < MAX ; i++)
         to[i] = from[i];
+}
+
+void invertArray( int *vetor)
+{
+    int aux, i=0, range = MAX -1;
+
+    for(i; i < MAX/2; i++)
+    {
+        aux = vetor[i];
+        vetor[i] = vetor[range];
+        vetor[range] = aux;
+
+        range--;
+    }
+
 }
 
 int random(int min, int max)
