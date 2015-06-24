@@ -43,6 +43,6 @@ void copyArray( int *from, int *to)
 }
 
 int random(int max) {
-    srand(time());
+    //srand(time());
     return (rand() % max) + 1;
 }

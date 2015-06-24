@@ -1,6 +1,26 @@
 # depslib dependency file v1.0
-1435175601 source:c:\users\alisson\desktop\estrutura de dados\estrutura-de-dados\ordenação-ed\main.c
+1435178295 source:c:\users\alisson\desktop\estrutura de dados\estrutura-de-dados\ordenação-ed\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
+
+1435177423 source:c:\users\alisson\desktop\estrutura de dados\estrutura-de-dados\bubblesort.c
+	<stdio.h>
+	<conio.h>
+	<windows.h>
+
+1435178243 source:c:\users\alisson\desktop\estrutura de dados\estrutura-de-dados\getrand.c
+	<stdio.h>
+	<conio.h>
+	<windows.h>
+	<time.h>
+
+1435177423 source:c:\users\alisson\desktop\estrutura de dados\estrutura-de-dados\quicksort.c
+	<stdio.h>
+	<stdlib.h>
+
+1435177423 source:c:\users\alisson\desktop\estrutura de dados\estrutura-de-dados\shellsort.c
+	<stdio.h>
+	<conio.h>
+	<windows.h>
 
