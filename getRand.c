@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <time.h>
 
-#define MAX 18
+#define MAX 10
 
 int main()
 {
@@ -18,6 +18,11 @@ int main()
     printArray(&tmp);
 
 
+    printf("\n\n\n");
+
+    invertArray(&tmp);
+    printArray(&tmp);
+
 
 }
 
@@ -25,7 +30,7 @@ int getArrayRand(int *vetor)
 {
     int i =0;
     for(i; i < MAX ; i++)
-        vetor[i] = random(999);
+        vetor[i] = random(0,999);
 }
 
 void printArray( int *vetor)
@@ -42,7 +47,23 @@ void copyArray( int *from, int *to)
         to[i] = from[i];
 }
 
-int random(int max) {
-    //srand(time());
-    return (rand() % max) + 1;
+
+void invertArray( int *vetor)
+{
+    int aux, i=0, range = MAX -1;
+
+    for(i; i < MAX/2; i++)
+    {
+        aux = vetor[i];
+        vetor[i] = vetor[range];
+        vetor[range] = aux;
+
+        range--;
+    }
+
+}
+
+int random(int min, int max)
+{
+    return rand()%(max-min+1) + min;
 }
