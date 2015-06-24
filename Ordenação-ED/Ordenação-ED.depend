@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1435175601 source:c:\users\alisson\desktop\estrutura de dados\estrutura-de-dados\ordenação-ed\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
