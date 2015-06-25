@@ -3,21 +3,21 @@
 #include <locale.h>
 #include <windows.h>
 #include <time.h>
-#define MAX 18
+#define MAX 300
 
 struct Tabela{
 
 char *nome;
-float tempoMedio;
-float tempoTotal;
-int numeroTrocas;
-int numeroComparacoes;
-int comparacoesMelhorCaso;
-int trocasMelhorCaso;
-int comparacoesPiorCaso;
-float tempoMelhorCaso;
-int trocasPiorCaso;
-float tempoPiorCaso;
+double tempoMedio;
+double tempoTotal;
+long int numeroTrocas;
+long int numeroComparacoes;
+long int comparacoesMelhorCaso;
+long int trocasMelhorCaso;
+long int comparacoesPiorCaso;
+double tempoMelhorCaso;
+long int trocasPiorCaso;
+double tempoPiorCaso;
 
 };
 
@@ -33,17 +33,57 @@ printf("\n______________________________________________________");
 printf("\nMetodo: %s",tabela.nome);
 printf("\nNumero de Trocas: %d",tabela.numeroTrocas);
 printf("\nNumero de Comparacoes: %d",tabela.numeroComparacoes);
-printf("\nTempo Total: %.3f",tabela.tempoTotal);
+printf("\nTempo Total: %lf seg",tabela.tempoTotal);
 
 printf("\nNumero de comparacoes melhor caso: %d",tabela.comparacoesMelhorCaso);
 printf("\nNumero de trocas Melhor Caso: %d",tabela.trocasMelhorCaso);
-printf("\nTempo melhor caso: %f",tabela.tempoMelhorCaso);
+printf("\nTempo melhor caso: %lf seg",tabela.tempoMelhorCaso);
 
 printf("\nNumero de comparacoes Pior caso: %d",tabela. comparacoesPiorCaso);
 printf("\nNumero de trocas Pior caso: %d",tabela.trocasPiorCaso);
-printf("\nTempo pior caso : %.3f",tabela.tempoPiorCaso);
-
+printf("\nTempo pior caso : %lf seg",tabela.tempoPiorCaso);
 printf("\n________________________________________________________\n");
+}
+int getArrayRand(int *vetor)
+{
+    int i =0;
+    for(i; i < MAX ; i++)
+        vetor[i] = random(0,999);
+}
+
+void printArray( int *vetor)
+{
+    int i =0;
+    for(i; i < MAX ; i++)
+        printf("%d, ", vetor[i]);
+}
+
+void copyArray( int *from, int *to)
+{
+    int i =0;
+    for(i; i < MAX ; i++)
+        to[i] = from[i];
+}
+
+
+void invertArray( int *vetor)
+{
+    int aux, i=0, range = MAX -1;
+
+    for(i; i < MAX/2; i++)
+    {
+        aux = vetor[i];
+        vetor[i] = vetor[range];
+        vetor[range] = aux;
+
+        range--;
+    }
+
+}
+
+int random(int min, int max)
+{
+    return rand()%(max-min+1) + min;
 }
 
 
@@ -52,12 +92,15 @@ struct Resultado bubbleSort(int *vetor)
   int swap = 0;
   int end = MAX - 1;
   int i;
-  float tInicial, tFinal, tempo;
+  clock_t tInicial, tFinal;
+  double tempo;
   int aux;
+
   struct Resultado resultado;
-  tabela.numeroComparacoes = 0;
-  tabela.numeroTrocas = 0;
-  tInicial = 0.000;
+
+  resultado.comparacoes = 0;
+  resultado.trocas = 0;
+  tInicial = clock();
 
   while(end > 0 || swap == 1)
   {
@@ -80,8 +123,8 @@ struct Resultado bubbleSort(int *vetor)
       }
       end--;
   }
-  tFinal = 1 ;// tempo fina
-  resultado.tempo = tFinal - tInicial;
+  tFinal = clock(); // tempo fina
+  resultado.tempo = ( (double) (tFinal - tInicial) ) / CLOCKS_PER_SEC; ;
   return resultado;
 }
 
@@ -89,51 +132,43 @@ struct Resultado bubbleSort(int *vetor)
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
-    struct Tabela tabela;
-    tabela.numeroComparacoes = 0;
-    tabela.numeroTrocas = 0;
-
-    int vet[MAX] = {1,5,2,4,3,6,9,7,8,10};
-    tabela = bubbleSort(vet);
-    imprimeResultado(tabela);
-
-
-
-
-
-    printf("Hello, 2 the world!\n");
 
     struct Resultado resultado;
     struct Tabela tabelaBubble;
-    int vetor[] = {7,3,2,1,5,6,4,8,9,10};
+    //int vetor[] = {7,3,2,1,5,6,4,8,9,10};
+    int vetor[MAX];
+    int vetorShell[MAX];
+    int vetorBubble[MAX];
+    int vetorLuke[MAX];
+    getArrayRand(&vetor);
+    copyArray(&vetor, vetorBubble);
+    copyArray(&vetor, vetorShell);
+    copyArray(&vetor, vetorLuke);
 
-    int vetorBubble[] = vetor[];
-    int vetorShell[] = vetor[];
-    int vetorTeste[] = vetor[];
 
+//-------------------------------------- Buble ---------------------------------------------//
+        tabelaBubble.nome = "Bubble";
     // Normal Buble
-    struct Resultado resultado = bubbleSort(vetorTest);
+        resultado = bubbleSort(vetorBubble);
         tabelaBubble.numeroComparacoes = resultado.comparacoes ;
         tabelaBubble.tempoTotal = resultado.tempo;
         tabelaBubble.numeroTrocas = resultado.trocas;
 
     // Melhor Buble
-    struct Resultado resultado = bubbleSort(vetorTest);
+        resultado = bubbleSort(vetorBubble);
         tabelaBubble.comparacoesMelhorCaso = resultado.comparacoes ;
         tabelaBubble.tempoMelhorCaso = resultado.tempo;
         tabelaBubble.trocasMelhorCaso = resultado.trocas;
-    ;
-    //Inverter array
 
+    //Inverter array
+        invertArray(&vetorBubble);
     // Pior Buble
-    struct Resultado resultado = bubbleSort(vetorTest);
+        resultado = bubbleSort(vetorBubble);
         tabelaBubble.comparacoesPiorCaso = resultado.comparacoes ;
         tabelaBubble.tempoPiorCaso = resultado.tempo;
         tabelaBubble.trocasPiorCaso = resultado.trocas;
-
-    for(i=0;i<10;i++)
-        printf("%d",vetorTest[i]);
-
+        imprimeResultado(tabelaBubble);
+//-------------------------------------- Buble ---------------------------------------------//
 
 return 0;
 }
